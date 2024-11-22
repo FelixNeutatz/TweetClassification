@@ -18,9 +18,9 @@ setup(
     url='https://github.com/FelixNeutatz/TweetClassification',
     license=license,
     include_package_data=True,
-    install_requires=["wheel",
-                      "pandas",
-                      "autogluon[text,features]"
+    install_requires=["pandas",
+                      "flair"
+                      "autogluon.multimodal"
                       ],
     packages=find_packages(exclude=('tests', 'docs'))
 )
