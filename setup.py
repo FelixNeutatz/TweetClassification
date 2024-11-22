@@ -19,7 +19,6 @@ setup(
     license=license,
     include_package_data=True,
     install_requires=["pandas",
-                      "flair",
                       "autogluon.multimodal"
                       ],
     packages=find_packages(exclude=('tests', 'docs'))
