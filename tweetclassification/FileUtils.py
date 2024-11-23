@@ -37,7 +37,7 @@ def readConversations(file_path):
             user = ""
 
         text = matrix[tweet_raw_id, list(df.columns).index("text")]
-        conversation.add_tweet(Tweet(user, text))
+        conversation.add_tweet(Tweet(user, text, tweet_id))
         current_id = tweet_id
         while current_id in maptweets:
             current_id = maptweets[current_id]
@@ -47,7 +47,7 @@ def readConversations(file_path):
             else:
                 user = ""
             text = matrix[tweet_raw_id, list(df.columns).index("text")]
-            conversation.add_tweet(Tweet(user, text))
+            conversation.add_tweet(Tweet(user, text, current_id))
         conversations.append(conversation)
 
     return conversations

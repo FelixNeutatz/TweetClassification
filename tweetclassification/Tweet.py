@@ -1,5 +1,5 @@
 class Tweet:
-    def __init__(self, user, text):
+    def __init__(self, user, text, id):
         """
         Initialize a Tweet object.
 
@@ -9,6 +9,7 @@ class Tweet:
         """
         self.user = user
         self.text = text
+        self.id = id
 
 
     def __repr__(self):
