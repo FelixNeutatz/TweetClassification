@@ -18,7 +18,9 @@ setup(
     url='https://github.com/FelixNeutatz/TweetClassification',
     license=license,
     include_package_data=True,
-    install_requires=["pandas"
+    install_requires=["pandas",
+                      "autogluon==0.8.3",
+                      "flair"
                       ],
     packages=find_packages(exclude=('tests', 'docs'))
 )
