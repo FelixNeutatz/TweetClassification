@@ -46,15 +46,12 @@ class Conversation:
         my_str = my_str[:-1] + " label: " + str(self.get_label())
         return my_str
 
-    def get_text(self):
+    def get_text(self, remove_names=True):
 
         my_str = ""
         for tweet in self.tweets:
-            if tweet.user.isdigit():
-                my_str += "user: "
-            else:
-                my_str += "system: "
-            tokens = tweet.text.replace("\n", " ").split(" ")
+            my_str += "user: "
+            tokens = str(tweet.text).replace("\n", " ").split(" ")
             for t in tokens:
                 if not (t.startswith("@") or
                         t.startswith("http") or
@@ -66,14 +63,16 @@ class Conversation:
                         t.startswith(".@") or
                         t.startswith(":http")
                 ):
-                    my_str += self.cleanText(t) + " "
+                    my_str += self.cleanText(t, remove_names) + " "
             my_str = my_str[:-1] + "\n"
         return my_str
 
-    def cleanText(self, text):
+    def cleanText(self, text, remove_names=True):
         removedStrings = self.removeStrings(text)
-        removedNames = self.removeNames(removedStrings)
-        return removedNames
+        if remove_names:
+            removedNames = self.removeNames(removedStrings)
+            return removedNames
+        return removedStrings
 
 
     def removeNames(self, text):
