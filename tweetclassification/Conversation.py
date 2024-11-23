@@ -1,4 +1,7 @@
 from tweetclassification.Tweet import Tweet
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
 
 class Conversation:
     def __init__(self):
@@ -63,9 +66,23 @@ class Conversation:
                         t.startswith(".@") or
                         t.startswith(":http")
                 ):
-                    my_str += self.removeStrings(t) + " "
+                    my_str += self.cleanText(t) + " "
             my_str = my_str[:-1] + "\n"
         return my_str
+
+    def cleanText(self, text):
+        removedStrings = self.removeStrings(text)
+        removedNames = self.removeNames(removedStrings)
+        return removedNames
+
+
+    def removeNames(self, text):
+        doc = nlp(text)
+        for ent in doc.ents:
+            if ent.label_ == "PERSON":
+                print("name: " + ent.text)
+                text = text.replace(ent.text, "Max")
+        return text
 
     def removeStrings(self, text):
         to_be_removed = ['😡', "😶", "😂", "😍", "😠", ":)", ":(", "😥", "🗣🙃", "😅", "😆", "😎", "✈", "😊",

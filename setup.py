@@ -20,7 +20,8 @@ setup(
     include_package_data=True,
     install_requires=["pandas",
                       "autogluon==0.8.3",
-                      "flair"
+                      "spacy",
+                      "en_core_web_sm"
                       ],
     packages=find_packages(exclude=('tests', 'docs'))
 )
