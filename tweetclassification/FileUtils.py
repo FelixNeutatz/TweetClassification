@@ -3,7 +3,7 @@ from tweetclassification.Tweet import Tweet
 from tweetclassification.Conversation import Conversation
 
 def readConversations(file_path):
-    df = pd.read_csv(file_path).sort_values(by=['in_response_to_tweet_id'])
+    df = pd.read_csv(file_path, error_bad_lines=False).sort_values(by=['in_response_to_tweet_id'])
 
     # Display the first few rows of the DataFrame
     matrix = df.values
