@@ -18,10 +18,13 @@ def readConversations(file_path):
         current_tweet_id = matrix[i, list(df.columns).index("tweet_id")]
         id2tweet[current_tweet_id] = i
 
-        if pd.isna(previous_tweet_id):
-            starting_tweets.append(int(current_tweet_id))
-        else:
-            maptweets[int(previous_tweet_id)] = int(current_tweet_id)
+        try:
+            if pd.isna(previous_tweet_id):
+                starting_tweets.append(int(current_tweet_id))
+            else:
+                maptweets[int(previous_tweet_id)] = int(current_tweet_id)
+        except:
+            pass
 
     print(starting_tweets)
     # print(maptweets)
